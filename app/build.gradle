@@ -23,11 +23,28 @@ android {
             versionCode 1
         }
     }
-
+    signingConfigs{
+        release{
+            storeFile file("../.sign/app.keystore")
+            storePassword "storePassword"
+            keyAlias "keyAlias"
+            keyPassword "keyPassword"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean","REPOST_CRASH","true")
+
+        }
+        homolog{
+            signingConfig signingConfigs.release
+            buildConfigField("boolean","REPOST_CRASH","true")
+        }
+        debug{
+            buildConfigField("boolean","REPOST_CRASH","false")
         }
     }
 }

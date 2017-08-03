@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import br.araujo.douglas.minhabiblioteca.*;
+import br.araujo.douglas.minhabiblioteca.BuildConfig;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -13,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void chamaLa(View view) {
-        CustomToast.showToast(this, "Olá", 1);
+        if(br.araujo.douglas.toastapp.BuildConfig.REPOST_CRASH){
+            CustomToast.showToast(this, "Repost Crash", 1);
+        }else{
+            CustomToast.showToast(this, "No Repost Crash", 2);
+        }
+
     }
 }
